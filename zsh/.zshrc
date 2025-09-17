@@ -51,9 +51,8 @@ zinit cdreplay -q
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+#zstyle ':completion:*' menu no
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
@@ -66,6 +65,5 @@ alias ......="cd ../../../../.."
 # Shell integrations
 source <(fzf --zsh)
 source "$SDKMAN_DIR/bin/sdkman-init.sh"
-eval "$(zoxide init --cmd cd zsh)"
 eval "$(pyenv init - zsh)"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
