@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-mkdir -p ~/.config/tmux
-
-stow -t ~ zsh
-stow -t ~/.config/tmux tmux
+stow -t "$XDG_CONFIG_HOME" zsh
