@@ -24,6 +24,8 @@ setopt HIST_FIND_NO_DUPS
 # Shell behavior
 # =============================================================================
 
+WORDCHARS=${WORDCHARS//\//}
+
 setopt AUTOCD
 setopt NOBEEP
 setopt NUMERIC_GLOB_SORT # sort file10 after file9
