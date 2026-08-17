@@ -3,13 +3,14 @@ OMZPLUGINDIR="${ZPLUGINDIR}/oh-my-zsh"
 
 _zplugin_load() {
   local plugin_path="${ZPLUGINDIR}/${2}"
+  local source_file="${3-${2}.plugin.zsh}"
   if [[ ! -d "$plugin_path" ]]; then
     mkdir -p "$ZPLUGINDIR"
     echo "Installing ${2}..."
     git clone --depth=1 "https://github.com/${1}/${2}" "$plugin_path" \
       || { echo "ERROR: failed to install ${2}" >&2; return 1; }
   fi
-  source "${plugin_path}/${2}.plugin.zsh"
+  [[ -n "$source_file" ]] && source "${plugin_path}/${source_file}"
 }
 
 _omzplugin_load() {
@@ -44,7 +45,15 @@ zplugin-update() {
 
 _zplugin_load zsh-users zsh-autosuggestions
 _zplugin_load zsh-users zsh-history-substring-search
-_zplugin_load zdharma-continuum fast-syntax-highlighting
+_zplugin_load sindresorhus pure ""
+
+fpath+=("${ZPLUGINDIR}/pure")
+autoload -Uz promptinit
+promptinit
+prompt pure
 
 _omzplugin_load git
 _omzplugin_load sudo
+
+# Must load last so it wraps the final ZLE widget definitions.
+_zplugin_load zdharma-continuum fast-syntax-highlighting

@@ -55,6 +55,9 @@ source "$ZDOTDIR/aliases.zsh"
 # Plugins and plugin manager
 source "$ZDOTDIR/plugins.zsh"
 
+# Keep pasted commands readable while preserving syntax highlighting.
+zle_highlight+=(paste:none)
+
 # =========================================================
 # Shell integrations
 # =========================================================
@@ -64,4 +67,3 @@ source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 eval "$(zoxide init zsh)"
 eval "$(pyenv init - zsh)"
-eval "$(starship init zsh)"
